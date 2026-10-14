@@ -1,0 +1,17 @@
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.page {
+  /* 게임 화면에서 당겨서 새로고침·스크롤 체이닝 방지 */
+  overscroll-behavior: none;
+}

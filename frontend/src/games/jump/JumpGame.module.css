@@ -1,0 +1,52 @@
+.game {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.help {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
+
+.area {
+  position: relative;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background: #dff1ff;
+  cursor: pointer;
+  /* 탭 시 스크롤·더블탭 확대·텍스트 선택 방지 */
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 1;
+}
+
+/* 좁은 화면(세로 모바일)에서는 게임 영역을 조금 더 높게 보여준다 */
+@media (max-width: 480px) {
+  .canvas {
+    aspect-ratio: 3 / 1.4;
+  }
+}
