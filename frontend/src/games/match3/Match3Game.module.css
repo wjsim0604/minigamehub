@@ -1,0 +1,249 @@
+.game {
+  width: 100%;
+  /* 보드가 한 화면 안에 들어오도록 화면 높이에 맞춰 폭을 줄임 (헤더·점수판·설명 높이 약 270px 제외) */
+  max-width: min(520px, max(300px, calc(100svh - 270px)));
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.top > button {
+  margin-left: auto;
+}
+
+.timeBox {
+  min-width: 84px;
+  padding: 0.35rem 0.75rem;
+  border-radius: 8px;
+  background: #364fc7;
+  color: #fff;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.timeLow {
+  background: #e03131;
+}
+
+.timeLabel {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.timeValue {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.timeBar {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--color-border);
+  overflow: hidden;
+}
+
+.timeBarFill {
+  height: 100%;
+  background: #364fc7;
+  transform-origin: left center;
+  transition: transform 0.2s linear;
+}
+
+.help {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
+
+.info {
+  display: grid;
+  /* 한국어 문장이 단어 중간에서 줄바꿈되지 않게 */
+  word-break: keep-all;
+}
+
+.info > * {
+  grid-area: 1 / 1;
+}
+
+.message {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #e8590c;
+  text-align: center;
+}
+
+.message:empty {
+  visibility: hidden;
+}
+
+.message:not(:empty) ~ .help {
+  visibility: hidden;
+}
+
+.boardWrap {
+  position: relative;
+  border-radius: 12px;
+  container-type: inline-size;
+  /* 보드 위 드래그/스와이프 시 스크롤·당겨서 새로고침·확대 방지 */
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: contain;
+}
+
+/* 7x7 (logic.ts BOARD_SIZE). 모든 행·열 크기를 동일하게 고정 (빈 행이 찌그러지지 않도록 minmax(0, 1fr)) */
+.board {
+  --gap: 1.2cqw;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  grid-template-rows: repeat(7, minmax(0, 1fr));
+  gap: var(--gap);
+  padding: 1.6cqw;
+  aspect-ratio: 1;
+  background: #2b3054;
+  border-radius: 12px;
+  /* 위에서 떨어지는 새 블록이 보드 밖에 보이지 않도록 */
+  overflow: hidden;
+}
+
+.cell {
+  min-width: 0;
+  min-height: 0;
+}
+
+.cellButton {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 7%;
+  border: 0;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.cellButton:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.selected {
+  background: rgba(255, 255, 255, 0.4);
+  box-shadow: inset 0 0 0 3px #ffd43b;
+}
+
+.selected .block {
+  transform: scale(1.1);
+}
+
+.hint {
+  animation: hintPulse 0.9s ease-in-out infinite alternate;
+}
+
+.block {
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transition: transform 0.15s ease;
+}
+
+.block svg {
+  display: block;
+}
+
+/* 제거: 축소 + 페이드 */
+.clearing {
+  animation: pop 0.2s ease-in forwards;
+}
+
+/* 교환: 상대 칸에서 미끄러져 옴 (116.3% = 셀 폭 / 블록 폭(셀의 86%, 패딩 7%x2)) */
+.swapIn {
+  animation: slideIn 0.15s ease-out;
+}
+
+/* 낙하: 위쪽 칸에서 떨어짐 */
+.fallIn {
+  animation: slideIn 0.24s cubic-bezier(0.4, 0, 1, 1);
+}
+
+@keyframes slideIn {
+  from {
+    transform: translate(
+      calc(var(--dx, 0) * (116.3% + var(--gap))),
+      calc(var(--dy, 0) * (116.3% + var(--gap)))
+    );
+  }
+  to {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes pop {
+  to {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+}
+
+@keyframes hintPulse {
+  from {
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+  }
+  to {
+    box-shadow: inset 0 0 0 3px #ffffff;
+    background: rgba(255, 255, 255, 0.32);
+  }
+}
+
+/* 좁은 화면: 점수·최고·시간·새 게임을 한 줄에 배치 */
+@media (max-width: 480px) {
+  .top {
+    flex-wrap: nowrap;
+    gap: 0.4rem;
+  }
+
+  .top > :first-child {
+    flex: 2 1 0;
+    min-width: 0;
+    gap: 0.4rem;
+  }
+
+  .top > :first-child > *,
+  .timeBox {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 0.3rem 0.25rem;
+  }
+
+  .top > button {
+    flex: none;
+    padding-inline: 0.7rem;
+  }
+
+  .help {
+    font-size: 0.8rem;
+  }
+}

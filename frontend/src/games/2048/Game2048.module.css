@@ -1,0 +1,88 @@
+.game {
+  width: 100%;
+  max-width: 460px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.help {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
+
+.boardWrap {
+  position: relative;
+  border-radius: 10px;
+  container-type: inline-size;
+  /* 보드 위 스와이프 시 스크롤·당겨서 새로고침·확대 방지 */
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  overscroll-behavior: contain;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(4, minmax(0, 1fr));
+  gap: 2.5cqw;
+  padding: 2.5cqw;
+  aspect-ratio: 1;
+  background: #bbada0;
+  border-radius: 10px;
+}
+
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: rgba(238, 228, 218, 0.35);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  overflow: hidden;
+  font-size: 11cqw;
+  color: #776e65;
+}
+
+.cell[data-digits="3"] {
+  font-size: 8.5cqw;
+}
+
+.cell[data-digits="4"] {
+  font-size: 6.5cqw;
+}
+
+.cell[data-digits="5"] {
+  font-size: 5.2cqw;
+}
+
+.cell[data-digits="6"] {
+  font-size: 4.3cqw;
+}
+
+.v2 { background: #eee4da; }
+.v4 { background: #ede0c8; }
+.v8 { background: #f2b179; color: #f9f6f2; }
+.v16 { background: #f59563; color: #f9f6f2; }
+.v32 { background: #f67c5f; color: #f9f6f2; }
+.v64 { background: #f65e3b; color: #f9f6f2; }
+.v128 { background: #edcf72; color: #f9f6f2; }
+.v256 { background: #edcc61; color: #f9f6f2; }
+.v512 { background: #edc850; color: #f9f6f2; }
+.v1024 { background: #edc53f; color: #f9f6f2; }
+.v2048 { background: #edc22e; color: #f9f6f2; }
+.vBig { background: #3c3a32; color: #f9f6f2; }

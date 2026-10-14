@@ -3,16 +3,16 @@
 > 모든 에이전트가 작업 전에 읽는 공통 문서입니다. 짧고 구체적으로 유지하고, `<...>` 부분은 프로젝트에 맞게 채워주세요.
 
 ## 1. 프로젝트 개요
-- 서비스 이름: `<서비스명>`
-- 한 줄 설명: `<무엇을 하는 서비스인지>`
+- 서비스 이름: MiniGameHub
+- 한 줄 설명: 여러 미니게임을 제공하고, 사용자가 원하는 게임을 선택해서 즐길 수 있는 웹 서비스
 - 주요 사용자: `<대상 사용자>`
-- 현재 단계: `<기획 / 개발 / 운영>`
+- 현재 단계: 기획
 - 아키텍처: **MSA (Microservices Architecture)**
 
 ## 2. 기술 스택
 | 영역 | 기술 |
 |---|---|
-| 프론트엔드 | React, TypeScript, Next.js (`<App Router / Pages Router>`) |
+| 프론트엔드 | React, TypeScript, Next.js (App Router, 정적 내보내기) |
 | 백엔드 서비스 | Node.js, NestJS (TypeScript) - 기본 서비스 스택 |
 | 백엔드 서비스 (Python) | Python (`<FastAPI 등>`) - `<용도: 데이터 처리 / AI / 배치 등>` |
 | API Gateway | `<NestJS Gateway / Kong / Nginx / AWS API Gateway 등>` |
@@ -27,10 +27,10 @@
 ## 3. 서비스 구성
 | 서비스 | 책임 | 스택 | DB | 비고 |
 |---|---|---|---|---|
-| gateway | 라우팅, 인증 토큰 검증, 요청 집계 | `<...>` | - | 외부 요청의 단일 진입점 |
-| `<user-service>` | 회원, 인증/인가 | NestJS | `user_db` | |
-| `<order-service>` | 주문 | NestJS | `order_db` | |
-| `<example-py-service>` | `<데이터 처리/AI 등>` | Python | `<...>` | |
+| frontend | 게임 선택 화면(첫 화면), 게임 실행(클라이언트 로직), 로컬 최고 점수 | Next.js | - | 1차(MVP)부터 |
+| gateway | 라우팅, 인증 토큰 검증, 속도 제한 | `<미정>` | - | 2차(랭킹)부터 |
+| user-service | 회원, 인증/인가, 프로필(닉네임) | NestJS | `user_db` | 2차(랭킹)부터 |
+| score-service | 점수 제출·검증, 게임별 리더보드 | NestJS | `score_db` | 2차(랭킹)부터 |
 
 > 서비스 목록은 기획 단계에서 `docs/architecture.md`에 확정한 뒤 이 표를 갱신합니다.
 

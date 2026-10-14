@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="200" viewBox="0 0 320 200" role="img" aria-label="블록 팡">
+  <rect width="320" height="200" fill="#eef0fb"/>
+  <rect x="70" y="10" width="180" height="180" rx="14" fill="#2b3054"/>
+  <g fill="#ffffff" fill-opacity="0.1">
+    <rect x="78" y="18" width="52" height="52" rx="8"/>
+    <rect x="134" y="18" width="52" height="52" rx="8"/>
+    <rect x="190" y="18" width="52" height="52" rx="8"/>
+    <rect x="78" y="74" width="52" height="52" rx="8"/>
+    <rect x="134" y="74" width="52" height="52" rx="8"/>
+    <rect x="190" y="74" width="52" height="52" rx="8"/>
+    <rect x="78" y="130" width="52" height="52" rx="8"/>
+    <rect x="134" y="130" width="52" height="52" rx="8"/>
+    <rect x="190" y="130" width="52" height="52" rx="8"/>
+  </g>
+  <g stroke="#ffffff" stroke-opacity="0.9" stroke-width="2.5" stroke-linejoin="round">
+    <!-- 1행: 원, 사각형, 별 -->
+    <circle cx="104" cy="44" r="19" fill="#e03131"/>
+    <rect x="143" y="27" width="34" height="34" rx="6" fill="#1971c2"/>
+    <polygon fill="#f59f00" points="216,23 221.5,36.4 236,37.6 225,47.1 228.4,61.3 216,53.8 203.6,61.3 207,47.1 196,37.6 210.5,36.4"/>
+    <!-- 2행: 하트 3개가 가로로 맞춰진 상태 (강조) -->
+    <path fill="#e64980" d="M104 117 C90 107 83 97 89 88 C94 80 102 82 104 89 C106 82 114 80 119 88 C125 97 118 107 104 117 Z"/>
+    <path fill="#e64980" d="M160 117 C146 107 139 97 145 88 C150 80 158 82 160 89 C162 82 170 80 175 88 C181 97 174 107 160 117 Z"/>
+    <path fill="#e64980" d="M216 117 C202 107 195 97 201 88 C206 80 214 82 216 89 C218 82 226 80 231 88 C237 97 230 107 216 117 Z"/>
+    <!-- 3행: 삼각형, 다이아몬드, 원 -->
+    <path fill="#2f9e44" d="M104 137 L124 174 L84 174 Z"/>
+    <path fill="#9c36b5" d="M160 135 L181 156 L160 177 L139 156 Z"/>
+    <circle cx="216" cy="156" r="19" fill="#e03131"/>
+  </g>
+  <rect x="76" y="72" width="168" height="56" rx="10" fill="none" stroke="#ffd43b" stroke-width="4"/>
+  <g fill="#ffd43b">
+    <polygon points="44,60 48,72 60,76 48,80 44,92 40,80 28,76 40,72"/>
+    <polygon points="278,120 281,129 290,132 281,135 278,144 275,135 266,132 275,129"/>
+  </g>
+</svg>
