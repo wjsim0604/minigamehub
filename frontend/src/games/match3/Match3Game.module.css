@@ -1,6 +1,7 @@
 .game {
   width: 100%;
-  max-width: 520px;
+  /* 보드가 한 화면 안에 들어오도록 화면 높이에 맞춰 폭을 줄임 (헤더·점수판·설명 높이 약 270px 제외) */
+  max-width: min(520px, max(300px, calc(100svh - 270px)));
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -66,12 +67,32 @@
   color: var(--color-muted);
 }
 
+.info {
+  display: grid;
+  /* 한국어 문장이 단어 중간에서 줄바꿈되지 않게 */
+  word-break: keep-all;
+}
+
+.info > * {
+  grid-area: 1 / 1;
+}
+
 .message {
   margin: 0;
-  min-height: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: 700;
   color: #e8590c;
   text-align: center;
+}
+
+.message:empty {
+  visibility: hidden;
+}
+
+.message:not(:empty) ~ .help {
+  visibility: hidden;
 }
 
 .boardWrap {
@@ -194,5 +215,35 @@
   to {
     box-shadow: inset 0 0 0 3px #ffffff;
     background: rgba(255, 255, 255, 0.32);
+  }
+}
+
+/* 좁은 화면: 점수·최고·시간·새 게임을 한 줄에 배치 */
+@media (max-width: 480px) {
+  .top {
+    flex-wrap: nowrap;
+    gap: 0.4rem;
+  }
+
+  .top > :first-child {
+    flex: 2 1 0;
+    min-width: 0;
+    gap: 0.4rem;
+  }
+
+  .top > :first-child > *,
+  .timeBox {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 0.3rem 0.25rem;
+  }
+
+  .top > button {
+    flex: none;
+    padding-inline: 0.7rem;
+  }
+
+  .help {
+    font-size: 0.8rem;
   }
 }

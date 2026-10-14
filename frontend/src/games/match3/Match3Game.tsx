@@ -409,12 +409,15 @@ export default function Match3Game({ bestScore, onGameOver }: GameProps) {
       <div className={styles.timeBar} aria-hidden="true">
         <div className={styles.timeBarFill} style={{ transform: `scaleX(${view.remainingMs / TIME_LIMIT_MS})` }} />
       </div>
-      <p className={styles.help}>
-        이웃한 두 블록을 차례로 누르거나 끌어서 바꾸세요. 같은 블록 3개 이상이 가로·세로로 이어지면 터집니다.
-      </p>
-      <p className={styles.message} aria-live="polite" data-testid="match3-message">
-        {message}
-      </p>
+      {/* 메시지는 설명 문구 자리에 겹쳐 표시해서 레이아웃이 밀리거나 보드를 가리지 않게 함 */}
+      <div className={styles.info}>
+        <p className={styles.message} aria-live="polite" data-testid="match3-message">
+          {message}
+        </p>
+        <p className={styles.help}>
+          이웃한 두 블록을 차례로 누르거나 끌어서 바꾸세요. 같은 블록 3개 이상이 가로·세로로 이어지면 터집니다.
+        </p>
+      </div>
 
       <div
         ref={boardRef}
