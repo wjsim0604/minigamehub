@@ -12,7 +12,7 @@
 ## 2. 기술 스택
 | 영역 | 기술 |
 |---|---|
-| 프론트엔드 | React, TypeScript, Next.js (`<App Router / Pages Router>`) |
+| 프론트엔드 | React, TypeScript, Next.js (App Router, 정적 내보내기) |
 | 백엔드 서비스 | Node.js, NestJS (TypeScript) - 기본 서비스 스택 |
 | 백엔드 서비스 (Python) | Python (`<FastAPI 등>`) - `<용도: 데이터 처리 / AI / 배치 등>` |
 | API Gateway | `<NestJS Gateway / Kong / Nginx / AWS API Gateway 등>` |
@@ -27,10 +27,10 @@
 ## 3. 서비스 구성
 | 서비스 | 책임 | 스택 | DB | 비고 |
 |---|---|---|---|---|
-| gateway | 라우팅, 인증 토큰 검증, 요청 집계 | `<...>` | - | 외부 요청의 단일 진입점 |
-| `<user-service>` | 회원, 인증/인가 | NestJS | `user_db` | |
-| `<order-service>` | 주문 | NestJS | `order_db` | |
-| `<example-py-service>` | `<데이터 처리/AI 등>` | Python | `<...>` | |
+| frontend | 게임 선택 화면(첫 화면), 게임 실행(클라이언트 로직), 로컬 최고 점수 | Next.js | - | 1차(MVP)부터 |
+| gateway | 라우팅, 인증 토큰 검증, 속도 제한 | `<미정>` | - | 2차(랭킹)부터 |
+| user-service | 회원, 인증/인가, 프로필(닉네임) | NestJS | `user_db` | 2차(랭킹)부터 |
+| score-service | 점수 제출·검증, 게임별 리더보드 | NestJS | `score_db` | 2차(랭킹)부터 |
 
 > 서비스 목록은 기획 단계에서 `docs/architecture.md`에 확정한 뒤 이 표를 갱신합니다.
 
