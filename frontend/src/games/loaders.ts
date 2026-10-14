@@ -10,6 +10,7 @@ import type { GameLoaderFn } from "./types";
 export const gameLoaders: Record<GameId, GameLoaderFn> = {
   "2048": () => import("./2048/Game2048"),
   jump: () => import("./jump/JumpGame"),
+  match3: () => import("./match3/Match3Game"),
 };
 
 export function getGameLoader(id: string): GameLoaderFn | undefined {

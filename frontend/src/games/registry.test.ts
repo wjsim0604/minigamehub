@@ -5,8 +5,8 @@ import { gameLoaders, getGameLoader } from "./loaders";
 import { gameRegistry, getGame } from "./registry";
 
 describe("gameRegistry", () => {
-  it("MVP 게임 id는 2048, jump (변경 금지)", () => {
-    expect(gameRegistry.map((g) => g.id)).toEqual(["2048", "jump"]);
+  it("MVP 게임 id는 2048, jump, match3 (변경 금지)", () => {
+    expect(gameRegistry.map((g) => g.id)).toEqual(["2048", "jump", "match3"]);
   });
 
   it("id는 kebab-case이고 중복이 없다", () => {
@@ -41,6 +41,7 @@ describe("gameRegistry", () => {
 
   it("getGame", () => {
     expect(getGame("jump")?.name).toBe("점프 게임");
+    expect(getGame("match3")?.name).toBe("블록 팡");
     expect(getGame("nope")).toBeUndefined();
   });
 });

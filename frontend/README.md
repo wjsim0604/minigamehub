@@ -1,6 +1,6 @@
 # frontend
 
-MiniGameHub 웹 프론트엔드 (MVP: 게임 목록, 2048, 점프 게임, 로컬 최고 점수).
+MiniGameHub 웹 프론트엔드 (MVP: 게임 목록, 2048, 점프 게임, 블록 팡, 로컬 최고 점수).
 Next.js App Router + TypeScript, `output: 'export'` 정적 내보내기로 빌드하며 백엔드·외부 API 호출이 없습니다 (ADR-0003).
 
 담당 에이전트: frontend. 2차(랭킹)부터 호출할 API는 `docs/api.md`를 따릅니다.
@@ -8,6 +8,13 @@ Next.js App Router + TypeScript, `output: 'export'` 정적 내보내기로 빌�
 ## 요구 사항
 - Node.js 20.9 이상 (개발 확인: Node 22, npm 10)
 - 패키지 매니저: npm
+
+## 게임 목록
+| id | 이름 | 경로 | 조작 | 요구사항 |
+|---|---|---|---|---|
+| `2048` | 2048 | `/games/2048` | 방향키 / 스와이프 | FR-003 |
+| `jump` | 점프 게임 | `/games/jump` | 스페이스·↑ / 탭 | FR-004 |
+| `match3` | 블록 팡 | `/games/match3` | 인접 블록 두 번 클릭·탭 / 드래그·스와이프 (60초 제한) | FR-007 |
 
 ## 실행 방법
 ```bash
@@ -50,7 +57,8 @@ src/
 │   ├── loaders.ts               # 게임별 지연 로더 (클라이언트 전용, import())
 │   ├── types.ts                 # GameProps / GameDefinition (공통 생명주기)
 │   ├── 2048/                    # logic.ts(순수 로직) + Game2048.tsx(UI)
-│   └── jump/                    # logic.ts(물리·충돌·스폰 순수 로직) + render.ts(canvas) + JumpGame.tsx(UI)
+│   ├── jump/                    # logic.ts(물리·충돌·스폰 순수 로직) + render.ts(canvas) + JumpGame.tsx(UI)
+│   └── match3/                  # logic.ts(보드 생성·매치·연쇄·섞기·힌트, 시드 난수) + blocks.tsx(SVG 블록 6종) + Match3Game.tsx(UI)
 ├── components/
 │   ├── home/                    # 게임 카드 목록, 썸네일(실패 시 텍스트 대체), 카드 최고 점수
 │   └── game/                    # GameLoader(지연 로딩·오류/다시 시도), ScoreBoard, 오버레이

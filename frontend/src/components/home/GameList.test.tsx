@@ -11,11 +11,13 @@ describe("GameList (홈)", () => {
     __resetBestScoreSessionForTests();
     render(<GameList games={cards} />);
     const links = screen.getAllByRole("link");
-    expect(links).toHaveLength(2);
+    expect(links).toHaveLength(3);
     expect(links[0]?.getAttribute("href")).toBe("/games/2048");
     expect(links[1]?.getAttribute("href")).toBe("/games/jump");
+    expect(links[2]?.getAttribute("href")).toBe("/games/match3");
     expect(screen.getByRole("heading", { name: "2048" })).toBeTruthy();
     expect(screen.getByRole("heading", { name: "점프 게임" })).toBeTruthy();
+    expect(screen.getByRole("heading", { name: "블록 팡" })).toBeTruthy();
     for (const game of cards) expect(screen.getByText(game.description)).toBeTruthy();
   });
 
@@ -28,7 +30,7 @@ describe("GameList (홈)", () => {
       path: "/games/new-game",
     };
     render(<GameList games={[...cards, extra]} />);
-    expect(screen.getAllByRole("link")).toHaveLength(3);
+    expect(screen.getAllByRole("link")).toHaveLength(cards.length + 1);
     expect(screen.getByRole("link", { name: /새 게임 플레이/ }).getAttribute("href")).toBe("/games/new-game");
   });
 
@@ -37,7 +39,7 @@ describe("GameList (홈)", () => {
     recordScore("2048", 1234);
     render(<GameList games={cards} />);
     expect(screen.getByText("최고 점수 1,234")).toBeTruthy();
-    expect(screen.getByText("기록 없음")).toBeTruthy();
+    expect(screen.getAllByText("기록 없음")).toHaveLength(cards.length - 1);
   });
 
   it("레지스트리가 비어 있으면 안내를 표시한다", () => {

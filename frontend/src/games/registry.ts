@@ -27,6 +27,13 @@ export const gameRegistry = [
     thumbnail: "/thumbnails/jump.svg",
     path: "/games/jump",
   },
+  {
+    id: "match3",
+    name: "블록 팡",
+    description: "이웃한 블록을 바꿔 같은 모양 3개 이상을 맞추고, 60초 동안 연쇄로 점수를 쌓아 보세요.",
+    thumbnail: "/thumbnails/match3.svg",
+    path: "/games/match3",
+  },
 ] as const satisfies readonly GameDefinition[];
 
 export type GameId = (typeof gameRegistry)[number]["id"];
